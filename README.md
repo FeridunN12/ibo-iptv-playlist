@@ -13,13 +13,19 @@ The generated playlist is written to:
 docs/combined.m3u
 ```
 
-The output keeps Turkish channels first, Russian channels second, skips empty lines, removes duplicate stream URLs, and preserves each `#EXTINF` line with its stream URL.
+The output keeps Turkish channels first, Russian channels second, skips empty lines, removes duplicate stream URLs, probes streams with short timeouts, removes broken or slow entries where possible, and preserves each `#EXTINF` line with its stream URL.
 
 ## Run Locally
 
 ```bash
 python combine.py
 ```
+
+Optional environment variables:
+
+- `STREAM_TIMEOUT_SECONDS`: stream probe timeout. Default: `3`.
+- `MAX_WORKERS`: number of concurrent stream probes. Default: `64`.
+- `PROBE_STREAMS`: set to `0` to skip stream testing.
 
 ## Automatic Updates
 
